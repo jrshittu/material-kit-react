@@ -4,6 +4,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Logo } from 'src/components/logo';
 import {
   Alert,
   Box,
@@ -14,18 +15,19 @@ import {
   Tab,
   Tabs,
   TextField,
-  Typography
+  Typography, FormControlLabel, Checkbox
 } from '@mui/material';
 import { useAuth } from 'src/hooks/use-auth';
 import { Layout as AuthLayout } from 'src/layouts/auth/layout';
 
 const Page = () => {
+
   const router = useRouter();
   const auth = useAuth();
   const [method, setMethod] = useState('email');
   const formik = useFormik({
     initialValues: {
-      email: 'demo@devias.io',
+      email: 'name@email.com',
       password: 'Password123!',
       submit: null
     },
@@ -71,8 +73,11 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Login | Devias Kit
+          Login | VDT Dashboard
         </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap" rel="stylesheet" />
       </Head>
       <Box
         sx={{
@@ -85,56 +90,39 @@ const Page = () => {
       >
         <Box
           sx={{
-            maxWidth: 550,
+            maxWidth: 500,
             px: 3,
-            py: '100px',
             width: '100%'
           }}
         >
           <div>
             <Stack
               spacing={1}
-              sx={{ mb: 3 }}
+              sx={{ mb: 3, textAlign: 'center' }}
             >
-              <Typography variant="h4">
+              <Box
+            component="header"
+            sx={{
+              display: 'flex',
+              justifyContent: "center",
+              p: 3,
+              alignItems: "center",
+              width: '100%',
+              mt: "54px"
+            }}
+          >  
+              <Logo /> 
+          </Box>
+              <Typography 
+                variant="h4" 
+                fontSize={24}
+                sx={{fontFamily: "Nunito Sans"}}
+              >
                 Login
               </Typography>
-              <Typography
-                color="text.secondary"
-                variant="body2"
-              >
-                Don&apos;t have an account?
-                &nbsp;
-                <Link
-                  component={NextLink}
-                  href="/auth/register"
-                  underline="hover"
-                  variant="subtitle2"
-                >
-                  Register
-                </Link>
-              </Typography>
             </Stack>
-            <Tabs
-              onChange={handleMethodChange}
-              sx={{ mb: 3 }}
-              value={method}
-            >
-              <Tab
-                label="Email"
-                value="email"
-              />
-              <Tab
-                label="Phone Number"
-                value="phoneNumber"
-              />
-            </Tabs>
-            {method === 'email' && (
-              <form
-                noValidate
-                onSubmit={formik.handleSubmit}
-              >
-                <Stack spacing={3}>
+            
+            <Stack spacing={3}>
                   <TextField
                     error={!!(formik.touched.email && formik.errors.email)}
                     fullWidth
@@ -158,26 +146,18 @@ const Page = () => {
                     value={formik.values.password}
                   />
                 </Stack>
-                <FormHelperText sx={{ mt: 1 }}>
-                  Optionally you can skip.
-                </FormHelperText>
-                {formik.errors.submit && (
-                  <Typography
-                    color="error"
-                    sx={{ mt: 3 }}
-                    variant="body2"
-                  >
-                    {formik.errors.submit}
-                  </Typography>
-                )}
+                <Box sx={{ my: '5px', display: "flex", justifyContent:"space-between"}}>
+                  <FormControlLabel control={<Checkbox />} label="Remember me" />
+                  <Link />
+                </Box>
                 <Button
                   fullWidth
                   size="large"
-                  sx={{ mt: 3 }}
+                  sx={{ mt: 3, backgroundColor: '#DC157B' }}
                   type="submit"
                   variant="contained"
                 >
-                  Continue
+                  Login
                 </Button>
                 <Button
                   fullWidth
@@ -187,30 +167,6 @@ const Page = () => {
                 >
                   Skip authentication
                 </Button>
-                <Alert
-                  color="primary"
-                  severity="info"
-                  sx={{ mt: 3 }}
-                >
-                  <div>
-                    You can use <b>demo@devias.io</b> and password <b>Password123!</b>
-                  </div>
-                </Alert>
-              </form>
-            )}
-            {method === 'phoneNumber' && (
-              <div>
-                <Typography
-                  sx={{ mb: 1 }}
-                  variant="h6"
-                >
-                  Not available in the demo
-                </Typography>
-                <Typography color="text.secondary">
-                  To prevent unnecessary costs we disabled this feature in the demo.
-                </Typography>
-              </div>
-            )}
           </div>
         </Box>
       </Box>

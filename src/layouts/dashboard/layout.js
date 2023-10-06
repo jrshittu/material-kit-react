@@ -5,6 +5,11 @@ import { withAuthGuard } from 'src/hocs/with-auth-guard';
 import { SideNav } from './side-nav';
 import { TopNav } from './top-nav';
 
+export const meta = {
+  title: "VDT Dashboard App",
+  description: "A user-friendly and efficient platform that allows employers and administrators to manage staff and teams seamlessly"
+}
+
 const SIDE_NAV_WIDTH = 280;
 
 const LayoutRoot = styled('div')(({ theme }) => ({
