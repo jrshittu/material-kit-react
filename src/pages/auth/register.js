@@ -48,7 +48,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Register | Devias Kit
+          Register | VDT Dashboard
         </title>
       </Head>
       <Box
@@ -141,7 +141,7 @@ const Page = () => {
               <Button
                 fullWidth
                 size="large"
-                sx={{ mt: 3 }}
+                sx={{ mt: 3 , backgroundColor: '#DC157B'}}
                 type="submit"
                 variant="contained"
               >

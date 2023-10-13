@@ -111,7 +111,10 @@ const Page = () => {
               mt: "54px"
             }}
           >  
-              <Logo /> 
+              <Box px={1}>
+                <img src='../assets/vdt-logo.png' width={80}/>
+                <img src='../assets/bitflux-logo.png' width={80} /> 
+              </Box>
           </Box>
               <Typography 
                 variant="h4" 
@@ -148,7 +151,9 @@ const Page = () => {
                 </Stack>
                 <Box sx={{ my: '5px', display: "flex", justifyContent:"space-between"}}>
                   <FormControlLabel control={<Checkbox />} label="Remember me" />
-                  <Link />
+                  <Link href='/' sx={{mt: "4px"}}>
+                    Reset Password?
+                  </Link>
                 </Box>
                 <Button
                   fullWidth

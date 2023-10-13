@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import { Box, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 
-// TODO: Change subtitle text
-
 export const Layout = (props) => {
   const { children } = props;
 
@@ -38,7 +36,7 @@ export const Layout = (props) => {
             alignItems: 'center',
             background: 'background.paper',
             color: 'white',
-            display: 'flex',
+            display: { lg: 'flex', xs: 'none' },
             justifyContent: 'center',
             '& img': {
               maxWidth: '100%'
